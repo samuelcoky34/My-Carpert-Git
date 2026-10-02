@@ -1,0 +1,31 @@
+name: Mi Primera Prueba
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el repositorio checkout
+        uses: actions/checkout@v4
+
+      - name: Para prepararlo con Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: Correr por primera vez en GitHub Actions
+        run: python main.py
+
+      - name: Auto-commit de cambios generados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Actualizar estadísticas"
+          commit_user_name: "Samuel Rodriguez [GitHub Actions]"
+          commit_user_email: "samuelcoky34@gmail.com"
